@@ -1,8 +1,6 @@
-import Button from './Button.vue';
+import Button from './Button.vue'
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-
-
 describe('Button.vue', () => {
     // Props: type
     it('should has the correct type class when type prop is set', () => {

@@ -2,7 +2,7 @@
 import { computed, ref } from "vue";
 import type { ButtonProps, ButtonEmits, ButtonInstance } from "./type";
 import { throttle } from "lodash-es";
-import { ErIcon } from 'hap-element';
+import ErIcon from '../Icon/Icon.vue';
 defineOptions({ name: "ErButton" });
 const props = withDefaults(defineProps<ButtonProps>(), {
     tag: "button",
@@ -44,7 +44,8 @@ const iconStyle = computed(() => {
         }" @click="useThrottle ? handlerClickThrottle($event) : handlerClick($event)">
         <template v-if="loading">
             <slot name="loading">
-                <er-icon spin class="loading-icon" :icon="loadingIcon ?? 'spinner'" :style="iconStyle" size="1x"></er-icon>
+                <er-icon spin class="loading-icon" :icon="loadingIcon ?? 'spinner'" :style="iconStyle"
+                    size="1x"></er-icon>
             </slot>
         </template>
 
