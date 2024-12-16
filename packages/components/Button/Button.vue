@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { computed, ref } from "vue";
+import { computed, inject, ref } from "vue";
 import type { ButtonProps, ButtonEmits, ButtonInstance } from "./type";
 import { throttle } from "lodash-es";
 import ErIcon from '../Icon/Icon.vue';
+import { BUTTON_GROUP_CTX_KEY } from "./Constant";
 defineOptions({ name: "ErButton" });
 const props = withDefaults(defineProps<ButtonProps>(), {
     tag: "button",
@@ -15,6 +16,14 @@ const slots = defineSlots();
 const emits = defineEmits<ButtonEmits>();
 
 const _ref = ref<ButtonInstance>();
+
+const ctx = inject(BUTTON_GROUP_CTX_KEY, void 0);
+
+const size = computed(() => ctx?.size ?? props?.size ?? '');
+
+const type = computed(() => ctx?.type ?? props?.type ?? '');
+
+const disabled = computed(() => ctx?.disabled || props?.disabled || false);
 
 defineExpose({
     ref: _ref
